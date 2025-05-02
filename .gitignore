@@ -1,0 +1,31 @@
+# Node modules
+node_modules/
+
+# Environment variables
+.env
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Database (ถ้ามีไฟล์ SQLite หรืออื่นๆ)
+*.sqlite
+*.sqlite3
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Sequelize migration logs (ถ้ามี)
+.sequelizerc
+
+# Coverage (ถ้ามีการใช้ test coverage tools)
+coverage/
+
+# IDE/editor folders
+.vscode/
+.idea/
+*.swp
