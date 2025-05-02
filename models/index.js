@@ -4,6 +4,7 @@ const sequelize = require('../config/database');
 const User = require('./user.model')(sequelize, DataTypes);
 const RepairItem = require('./repairItem.model')(sequelize, DataTypes);
 const RepairOrder = require('./repairOrder.model')(sequelize, DataTypes);
+const Product = require('./product.model')(sequelize, DataTypes);
 
 // ความสัมพันธ์ระหว่าง RepairOrder กับ RepairItem (One-to-Many)
 RepairOrder.hasMany(RepairItem, { foreignKey: 'orderId' });
@@ -22,4 +23,5 @@ module.exports = {
   User,
   RepairItem,
   RepairOrder,
+  Product,
 };

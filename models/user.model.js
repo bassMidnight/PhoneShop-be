@@ -13,6 +13,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.ENUM('Admin', 'Staff', 'Customer'),
         defaultValue: 'Customer',
       },
+    }, {
+      paranoid: true, // เปิด soft delete
+      timestamps: true // เปิด createdAt, updatedAt
     });
   
     return User;

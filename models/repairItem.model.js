@@ -4,6 +4,9 @@ module.exports = (sequelize, DataTypes) => {
       productType: DataTypes.STRING,
       brand: DataTypes.STRING,
       color: DataTypes.STRING,
+    }, {
+      paranoid: true, // เปิด soft delete
+      timestamps: true // เปิด createdAt, updatedAt
     });
   
     return RepairItem;
