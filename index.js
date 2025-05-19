@@ -6,6 +6,7 @@ const cors = require('cors');
 const authRoutes = require('./routes/auth.routes');
 const userRoutes = require('./routes/user.routes');
 const productRoutes = require('./routes/product.routes');
+const repairOrderRoutes = require('./routes/repairOrder.routes');
 
 const app = express();
 app.use(cors());
@@ -18,11 +19,12 @@ app.use('/api/phone-shop', apiRouter);
 apiRouter.use('/auth', authRoutes);
 apiRouter.use('/users', userRoutes);
 apiRouter.use('/products', productRoutes);
+apiRouter.use('/repair-orders', repairOrderRoutes);
 
 // Migration function (sync models)
 const runMigrations = async () => {
   try {
-    await db.sequelize.sync({ alter: true }); // หรือใช้ { force: true } เพื่อ drop แล้วสร้างใหม่
+    await db.sequelize.sync({ force: true }); // หรือใช้ { force: true } เพื่อ drop แล้วสร้างใหม่
     console.log('✅ Database synchronized successfully.');
   } catch (error) {
     console.error('❌ Failed to sync database:', error);

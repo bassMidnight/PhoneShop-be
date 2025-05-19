@@ -5,6 +5,7 @@ const User = require('./user.model')(sequelize, DataTypes);
 const RepairItem = require('./repairItem.model')(sequelize, DataTypes);
 const RepairOrder = require('./repairOrder.model')(sequelize, DataTypes);
 const Product = require('./product.model')(sequelize, DataTypes);
+const RepairItemProduct = require('./repairItemProduct.model')(sequelize, DataTypes);
 
 // ความสัมพันธ์ระหว่าง RepairOrder กับ RepairItem (One-to-Many)
 RepairOrder.hasMany(RepairItem, { foreignKey: 'orderId' });
@@ -18,10 +19,21 @@ RepairOrder.belongsTo(User, { foreignKey: 'customerId', as: 'customer' });
 User.hasMany(RepairOrder, { foreignKey: 'repairerId', as: 'repairerOrders' });
 RepairOrder.belongsTo(User, { foreignKey: 'repairerId', as: 'repairer' });
 
+RepairItem.belongsToMany(Product, {
+  through: RepairItemProduct,
+  foreignKey: 'repairItemId',
+  otherKey: 'productId',
+});
+Product.belongsToMany(RepairItem, {
+  through: RepairItemProduct,
+  foreignKey: 'productId',
+  otherKey: 'repairItemId',
+});
 module.exports = {
   sequelize,
   User,
   RepairItem,
   RepairOrder,
   Product,
+  RepairItemProduct,
 };
